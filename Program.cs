@@ -1,14 +1,14 @@
 ﻿int[] recordBooks = { 1042, 1058, 1071, 1093, 1105 };
 int target = 1091;
-bool found = false;
+bool found1 = false;
 
 foreach (int number in recordBooks) {
     if (number == target) {
-        found = true;
+        found1 = true;
         break;
     }
 }
-Console.WriteLine(found ? "Студент найден" : "Студент не найден");
+Console.WriteLine(found1 ? "Студент найден" : "Студент не найден");
 
 
 int variant = 1;
@@ -56,3 +56,84 @@ Console.WriteLine($"Совпашие номера: {groupIds[i]} и {groupIds[j]
 }
 
 Console.WriteLine(hasDuplicates ? "Есть повторящиеся номера" : "Все номера уникальны");
+
+int days = 5;
+int lessonsPerDay = 6;
+bool found = false;
+
+for (int day = 1; day <= days && !found; day++) {
+    for (int lesson = 1; lesson <= lessonsPerDay; lesson++) {
+        bool isFree = (day == 3 && lesson == 4);
+
+        if (isFree) {
+            Console.WriteLine($"Свободный слот: день {day}, урок {lesson}");
+            found = true;
+            break;
+        }
+    }
+}
+if (!found) {
+    Console.WriteLine("Свободных слотов нет");
+}
+//самостоятельные задания
+//задача Б
+
+int number1 = 29;
+bool isPrimee = true;
+
+if (number1 <= 1) {
+    isPrimee = false;
+} else {
+    for (int n = 2; n < number1; n++) {
+        if  (number1 % n == 0) {
+            isPrimee = false;
+            break;
+        }
+    }
+}
+
+Console.WriteLine(isPrimee ? "Число простое" : "Число составное");
+
+//задача В
+
+int[] numbers1 = { 1, 2, 3, 4, 5, 6 };
+int sum1 = 0;
+
+foreach (int num2 in numbers1) {
+    if (num2 % 2 != 0) {
+        continue;
+    }
+    sum1 += num2;
+}
+
+Console.WriteLine($"Сумма чётных чисел: {sum1}");
+
+//индивидуальный вариант
+Console.Write("Введите свою фамилию: ");
+string surname = Console.ReadLine()!.Trim();
+if (string.IsNullOrEmpty(surname)) {
+Console.WriteLine("Фамилия не введена. Завершение работы.");
+return;
+}
+Random rnd = new(surname.GetHashCode() + DateTime.Now.DayOfYear);
+var assigned = Enumerable.Range(1, 10)
+.OrderBy(_ => rnd.Next())
+.Take(2)
+.OrderBy(x => x)
+.ToList();
+Console.WriteLine($"Задачи: №{assigned[0]} и №{assigned[1]}");
+
+
+//вариант №6
+
+int[] array = { 1, 3, 5, 4, 7 };
+bool isSorted = true;
+
+for (int m = 0; m < array.Length - 1; m++) {
+    if (array[m] > array[m + 1]) {
+        isSorted = false;
+        break;
+    }
+}
+
+Console.WriteLine(isSorted ? "Массив отсортирован" : "Массив не отсортирован");
